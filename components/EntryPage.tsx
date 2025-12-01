@@ -44,6 +44,7 @@ export default function EntryPage() {
     }
   };
 
+  
   return (
     <div className="bg-gray-800 border border-blue-500 rounded-xl p-4 sm:p-6">
       <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Enter Machine</h2>
