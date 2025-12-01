@@ -215,6 +215,7 @@ export default function HistoryPage() {
                   <th className="px-2 sm:px-4 py-3 text-left">Tech</th>
                   <th className="px-2 sm:px-4 py-3 text-left">Status</th>
                   <th className="px-2 sm:px-4 py-3 text-left">Entry Date</th>
+                  <th className="px-2 sm:px-4 py-3 text-left">Exit Date</th>
                   <th className="px-2 sm:px-4 py-3 text-center">Actions</th>
                 </tr>
               </thead>
@@ -234,6 +235,9 @@ export default function HistoryPage() {
                     </td>
                     <td className="px-2 sm:px-4 py-3 text-xs sm:text-sm text-gray-400">
                       {new Date(m.entry).toLocaleDateString()}
+                    </td>
+                    <td className="px-2 sm:px-4 py-3 text-xs sm:text-sm text-gray-400">
+                      {m.exit ? new Date(m.exit).toLocaleDateString() : '—'}
                     </td>
                     <td className="px-2 sm:px-4 py-3 text-center space-x-1 sm:space-x-2 flex justify-center flex-wrap gap-1">
                       {m.status === 'In' && (
@@ -289,12 +293,16 @@ export default function HistoryPage() {
                     <p className="text-white">{m.technician}</p>
                   </div>
                   <div>
-                    <p className="text-gray-400">Repairs</p>
-                    <p className="text-white">{m.repairs.length}</p>
-                  </div>
-                  <div>
                     <p className="text-gray-400">Entry</p>
                     <p className="text-white">{new Date(m.entry).toLocaleDateString()}</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-400">Exit</p>
+                    <p className="text-white">{m.exit ? new Date(m.exit).toLocaleDateString() : '—'}</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-400">Repairs</p>
+                    <p className="text-white">{m.repairs.length}</p>
                   </div>
                 </div>
 
