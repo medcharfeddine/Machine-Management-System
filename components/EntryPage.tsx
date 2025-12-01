@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function EntryPage() {
@@ -14,7 +14,13 @@ export default function EntryPage() {
   });
   const [loading, setLoading] = useState(false);
 
-  const technicians = ['Mohamed', 'Amir', 'Bilel'];
+  useEffect(() => {
+    // Auto-fill technician from logged-in user
+    const username = localStorage.getItem('username');
+    if (username) {
+      setForm(prev => ({ ...prev, technician: username }));
+    }
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -22,7 +28,7 @@ export default function EntryPage() {
 
   const submit = async () => {
     if (!form.sn || !form.client || !form.technician) {
-      alert('Serial number, client, and technician are required');
+      alert('Please ensure you are logged in. Serial number and client are required');
       return;
     }
 
@@ -30,7 +36,7 @@ export default function EntryPage() {
     try {
       await axios.post('/api/machines', form);
       alert('Machine entered successfully!');
-      setForm({ client: '', phone: '', type: '', brand: '', sn: '', technician: '' });
+      setForm({ ...form, client: '', phone: '', type: '', brand: '', sn: '' });
     } catch (err: any) {
       alert('Error: ' + (err.response?.data?.message || err.message));
     } finally {
@@ -99,20 +105,13 @@ export default function EntryPage() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">Technician *</label>
-          <select
-            name="technician"
+          <label className="block text-sm font-medium text-gray-300 mb-2">Technician</label>
+          <input
+            type="text"
             value={form.technician}
-            onChange={handleChange}
-            className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:border-blue-500 focus:outline-none"
-          >
-            <option value="">Select technician</option>
-            {technicians.map((t) => (
-              <option key={t} value={t}>
-                {t}
-              </option>
-            ))}
-          </select>
+            readOnly
+            className="w-full px-4 py-2 bg-gray-600 border border-gray-600 rounded-lg text-white cursor-not-allowed"
+          />
         </div>
       </div>
 

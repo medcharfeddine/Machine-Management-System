@@ -36,9 +36,18 @@ export default function HistoryPage() {
   const [repairNote, setRepairNote] = useState('');
   const [editingRepairId, setEditingRepairId] = useState<string | null>(null);
   const [editingRepairText, setEditingRepairText] = useState('');
+  const [loggedInTech, setLoggedInTech] = useState<string>('');
 
   const technicians = ['', 'Ahmed', 'Mohamed', 'Youssef', 'Sami', 'Oussama'];
   const statuses = ['', 'In', 'Out'];
+
+  useEffect(() => {
+    // Get logged-in technician from localStorage
+    const username = localStorage.getItem('username');
+    if (username) {
+      setLoggedInTech(username);
+    }
+  }, []);
 
   const fetchData = async () => {
     setLoading(true);
@@ -141,7 +150,7 @@ export default function HistoryPage() {
     try {
       await axios.post(`/api/machines/${selectedMachineId}/repair`, {
         note: repairNote,
-        tech: ''
+        tech: loggedInTech
       });
       fetchData();
       setModalOpen(false);
