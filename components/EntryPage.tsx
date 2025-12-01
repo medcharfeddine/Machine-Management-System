@@ -14,7 +14,7 @@ export default function EntryPage() {
   });
   const [loading, setLoading] = useState(false);
 
-  const technicians = ['Ahmed', 'Mohamed', 'Youssef', 'Sami', 'Oussama'];
+  const technicians = ['Mohamed', 'Amir', 'Bilel'];
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
