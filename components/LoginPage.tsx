@@ -31,31 +31,31 @@ export default function LoginPage({ onLogin, switchToRegister }: { onLogin: (use
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 to-black">
-      <div className="bg-gray-800 border border-blue-500 rounded-xl p-8 w-full max-w-md shadow-2xl">
-        <h2 className="text-3xl font-bold text-center mb-8 text-white">Technician Login</h2>
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 to-black p-4">
+      <div className="bg-gray-800 border border-blue-500 rounded-xl p-6 sm:p-8 w-full max-w-md shadow-2xl">
+        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8 text-white">Technician Login</h2>
         
-        <div className="space-y-5">
+        <div className="space-y-4 sm:space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">Username</label>
+            <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Username</label>
             <input
               name="username"
               placeholder="Enter your username"
               value={form.username}
               onChange={handleChange}
-              className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:border-blue-500 focus:outline-none transition"
+              className="w-full px-3 sm:px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:border-blue-500 focus:outline-none transition"
             />
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">Password</label>
+            <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Password</label>
             <input
               name="password"
               type="password"
               placeholder="Enter your password"
               value={form.password}
               onChange={handleChange}
-              className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:border-blue-500 focus:outline-none transition"
+              className="w-full px-3 sm:px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:border-blue-500 focus:outline-none transition"
             />
           </div>
         </div>
@@ -63,12 +63,12 @@ export default function LoginPage({ onLogin, switchToRegister }: { onLogin: (use
         <button
           onClick={submit}
           disabled={loading}
-          className="w-full mt-8 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition disabled:opacity-50"
+          className="w-full mt-6 sm:mt-8 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition disabled:opacity-50 text-sm sm:text-base"
         >
           {loading ? 'Logging in...' : 'Login'}
         </button>
 
-        <p className="text-center mt-6 text-gray-400">
+        <p className="text-center mt-4 sm:mt-6 text-gray-400 text-xs sm:text-sm">
           Don't have an account?{' '}
           <button
             onClick={switchToRegister}

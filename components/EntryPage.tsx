@@ -45,72 +45,72 @@ export default function EntryPage() {
   };
 
   return (
-    <div className="bg-gray-800 border border-blue-500 rounded-xl p-6">
-      <h2 className="text-2xl font-bold text-white mb-6">Enter Machine</h2>
+    <div className="bg-gray-800 border border-blue-500 rounded-xl p-4 sm:p-6">
+      <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Enter Machine</h2>
 
-      <div className="space-y-4">
+      <div className="space-y-3 sm:space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">Client *</label>
+          <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Client *</label>
           <input
             name="client"
             placeholder="Client name"
             value={form.client}
             onChange={handleChange}
-            className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:border-blue-500 focus:outline-none"
+            className="w-full px-3 sm:px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:border-blue-500 focus:outline-none"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">Phone</label>
+          <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Phone</label>
           <input
             name="phone"
             placeholder="Phone number"
             value={form.phone}
             onChange={handleChange}
-            className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:border-blue-500 focus:outline-none"
+            className="w-full px-3 sm:px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:border-blue-500 focus:outline-none"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">Type</label>
+          <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Type</label>
           <input
             name="type"
             placeholder="Machine type"
             value={form.type}
             onChange={handleChange}
-            className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:border-blue-500 focus:outline-none"
+            className="w-full px-3 sm:px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:border-blue-500 focus:outline-none"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">Brand</label>
+          <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Brand</label>
           <input
             name="brand"
             placeholder="Brand"
             value={form.brand}
             onChange={handleChange}
-            className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:border-blue-500 focus:outline-none"
+            className="w-full px-3 sm:px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:border-blue-500 focus:outline-none"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">Serial Number *</label>
+          <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Serial Number *</label>
           <input
             name="sn"
             placeholder="Serial number"
             value={form.sn}
             onChange={handleChange}
-            className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:border-blue-500 focus:outline-none"
+            className="w-full px-3 sm:px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:border-blue-500 focus:outline-none"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">Technician</label>
+          <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Technician</label>
           <input
             type="text"
             value={form.technician}
             readOnly
-            className="w-full px-4 py-2 bg-gray-600 border border-gray-600 rounded-lg text-white cursor-not-allowed"
+            className="w-full px-3 sm:px-4 py-2 bg-gray-600 border border-gray-600 rounded-lg text-white text-sm cursor-not-allowed"
           />
         </div>
       </div>
@@ -118,7 +118,7 @@ export default function EntryPage() {
       <button
         onClick={submit}
         disabled={loading}
-        className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition disabled:opacity-50"
+        className="w-full mt-4 sm:mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition disabled:opacity-50 text-sm sm:text-base"
       >
         {loading ? 'Entering...' : 'Enter Machine'}
       </button>
