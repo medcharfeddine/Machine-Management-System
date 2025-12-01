@@ -4,12 +4,12 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string; repairId: string } }
+  { params }: { params: Promise<{ id: string; repairId: string }> }
 ) {
   try {
     await connectDB();
     const { note } = await request.json();
-    const { id, repairId } = params;
+    const { id, repairId } = await params;
 
     if (!note || !note.trim()) {
       return NextResponse.json({ error: 'Repair note is required' }, { status: 400 });
