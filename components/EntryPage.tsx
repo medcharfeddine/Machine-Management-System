@@ -31,6 +31,7 @@ export default function EntryPage() {
       setForm(prev => ({ ...prev, technician: username }));
     }
   }, []);
+  
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
