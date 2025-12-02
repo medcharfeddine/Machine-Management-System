@@ -12,6 +12,7 @@ const MachineSchema = new mongoose.Schema({
   phone: String,
   type: String,
   brand: String,
+  region: String,
   technician: { type: String, required: true },
   entry: { type: Date, default: Date.now },
   exit: Date,

@@ -3,12 +3,22 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const machineTypes = ['imprimante', 'pc fix', 'pc portable', 'photocopie', 'videoprojecteur', 'onduleur', 'machine a calculer'];
+const brands = ['HP', 'Dell', 'Lenovo', 'Canon', 'Xerox', 'Epson', 'Brother', 'Samsung', 'LG', 'Acer', 'ASUS', 'Sony', 'Panasonic', 'Other'];
+const tunisianStates = [
+  'Ariana', 'Béja', 'Ben Arous', 'Bizerte', 'Gabès', 'Gafsa', 'Jendouba', 
+  'Kairouan', 'Kasserine', 'Kebili', 'Kef', 'Mahdia', 'Manouba', 'Médenine', 
+  'Monastir', 'Nabeul', 'Sfax', 'Sidi Bouzid', 'Siliana', 'Sousse', 'Tataouine', 
+  'Tozeur', 'Tunis', 'Zaghouan'
+];
+
 export default function EntryPage() {
   const [form, setForm] = useState({
     client: '',
     phone: '',
     type: '',
     brand: '',
+    region: '',
     sn: '',
     technician: ''
   });
@@ -36,7 +46,7 @@ export default function EntryPage() {
     try {
       await axios.post('/api/machines', form);
       alert('Machine entered successfully!');
-      setForm({ ...form, client: '', phone: '', type: '', brand: '', sn: '' });
+      setForm({ ...form, client: '', phone: '', type: '', brand: '', region: '', sn: '' });
     } catch (err: any) {
       alert('Error: ' + (err.response?.data?.message || err.message));
     } finally {
@@ -73,25 +83,54 @@ export default function EntryPage() {
         </div>
 
         <div>
-          <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Type</label>
-          <input
+          <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Type *</label>
+          <select
             name="type"
-            placeholder="Machine type"
             value={form.type}
             onChange={handleChange}
             className="w-full px-3 sm:px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:border-blue-500 focus:outline-none"
-          />
+          >
+            <option value="">Select machine type</option>
+            {machineTypes.map((t) => (
+              <option key={t} value={t}>
+                {t}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div>
-          <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Brand</label>
-          <input
+          <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Brand *</label>
+          <select
             name="brand"
-            placeholder="Brand"
             value={form.brand}
             onChange={handleChange}
             className="w-full px-3 sm:px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:border-blue-500 focus:outline-none"
-          />
+          >
+            <option value="">Select brand</option>
+            {brands.map((b) => (
+              <option key={b} value={b}>
+                {b}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Region *</label>
+          <select
+            name="region"
+            value={form.region}
+            onChange={handleChange}
+            className="w-full px-3 sm:px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:border-blue-500 focus:outline-none"
+          >
+            <option value="">Select region</option>
+            {tunisianStates.map((state) => (
+              <option key={state} value={state}>
+                {state}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div>

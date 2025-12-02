@@ -17,6 +17,7 @@ interface Machine {
   phone: string;
   type: string;
   brand: string;
+  region?: string;
   technician: string;
   status: string;
   entry: string;
@@ -212,6 +213,8 @@ export default function HistoryPage() {
                   <th className="px-2 sm:px-4 py-3 text-left">SN</th>
                   <th className="px-2 sm:px-4 py-3 text-left">Client</th>
                   <th className="px-2 sm:px-4 py-3 text-left">Type</th>
+                  <th className="px-2 sm:px-4 py-3 text-left">Brand</th>
+                  <th className="px-2 sm:px-4 py-3 text-left">Region</th>
                   <th className="px-2 sm:px-4 py-3 text-left">Tech</th>
                   <th className="px-2 sm:px-4 py-3 text-left">Status</th>
                   <th className="px-2 sm:px-4 py-3 text-left">Entry Date</th>
@@ -225,6 +228,8 @@ export default function HistoryPage() {
                     <td className="px-2 sm:px-4 py-3">{m.sn}</td>
                     <td className="px-2 sm:px-4 py-3">{m.client}</td>
                     <td className="px-2 sm:px-4 py-3">{m.type}</td>
+                    <td className="px-2 sm:px-4 py-3">{m.brand || '—'}</td>
+                    <td className="px-2 sm:px-4 py-3">{m.region || '—'}</td>
                     <td className="px-2 sm:px-4 py-3">{m.technician}</td>
                     <td className="px-2 sm:px-4 py-3">
                       <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
@@ -287,6 +292,14 @@ export default function HistoryPage() {
                   <div>
                     <p className="text-gray-400">Type</p>
                     <p className="text-white">{m.type}</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-400">Brand</p>
+                    <p className="text-white">{m.brand || '—'}</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-400">Region</p>
+                    <p className="text-white">{m.region || '—'}</p>
                   </div>
                   <div>
                     <p className="text-gray-400">Tech</p>
