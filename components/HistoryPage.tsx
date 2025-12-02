@@ -29,6 +29,7 @@ export default function HistoryPage() {
   const [machines, setMachines] = useState<Machine[]>([]);
   const [filterTech, setFilterTech] = useState('');
   const [filterStatus, setFilterStatus] = useState('');
+  const [filterRegion, setFilterRegion] = useState('');
   const [loading, setLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [repairsModalOpen, setRepairsModalOpen] = useState(false);
@@ -41,6 +42,12 @@ export default function HistoryPage() {
 
   const technicians = ['', 'Ahmed', 'Mohamed', 'Youssef', 'Sami', 'Oussama'];
   const statuses = ['', 'In', 'Out'];
+  const tunisianStates = [
+    '', 'Ariana', 'Béja', 'Ben Arous', 'Bizerte', 'Gabès', 'Gafsa', 'Jendouba', 
+    'Kairouan', 'Kasserine', 'Kebili', 'Kef', 'Mahdia', 'Manouba', 'Médenine', 
+    'Monastir', 'Nabeul', 'Sfax', 'Sidi Bouzid', 'Siliana', 'Sousse', 'Tataouine', 
+    'Tozeur', 'Tunis', 'Zaghouan'
+  ];
 
   useEffect(() => {
     // Get logged-in technician from localStorage
@@ -56,7 +63,8 @@ export default function HistoryPage() {
       const res = await axios.get('/api/machines', {
         params: {
           technician: filterTech || undefined,
-          status: filterStatus || undefined
+          status: filterStatus || undefined,
+          region: filterRegion || undefined
         }
       });
       setMachines(Array.isArray(res.data) ? res.data : []);
@@ -70,7 +78,7 @@ export default function HistoryPage() {
 
   useEffect(() => {
     fetchData();
-  }, [filterTech, filterStatus]);
+  }, [filterTech, filterStatus, filterRegion]);
 
   const markExit = async (id: string) => {
     try {
@@ -167,7 +175,7 @@ export default function HistoryPage() {
       <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Machine History</h2>
 
       {/* Filters */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6">
         <div>
           <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Technician</label>
           <select
@@ -192,6 +200,20 @@ export default function HistoryPage() {
             {statuses.map((s) => (
               <option key={s} value={s}>
                 {s || 'All'}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Region</label>
+          <select
+            value={filterRegion}
+            onChange={(e) => setFilterRegion(e.target.value)}
+            className="w-full px-3 sm:px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:border-blue-500 focus:outline-none"
+          >
+            {tunisianStates.map((state) => (
+              <option key={state} value={state}>
+                {state || 'All'}
               </option>
             ))}
           </select>

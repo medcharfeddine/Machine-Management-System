@@ -31,7 +31,7 @@ export default function EntryPage() {
       setForm(prev => ({ ...prev, technician: username }));
     }
   }, []);
-  
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -155,6 +155,15 @@ export default function EntryPage() {
           />
         </div>
       </div>
+
+      {/* Summary */}
+      {form.client && (
+        <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-blue-900/50 border border-blue-500 rounded-lg">
+          <p className="text-xs sm:text-sm text-gray-300 mb-2">Client Information:</p>
+          <p className="text-white font-semibold text-sm sm:text-base">{form.client}</p>
+          {form.phone && <p className="text-blue-400 text-xs sm:text-sm">{form.phone}</p>}
+        </div>
+      )}
 
       <button
         onClick={submit}

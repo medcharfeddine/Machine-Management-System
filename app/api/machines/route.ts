@@ -9,10 +9,12 @@ export async function GET(req: NextRequest) {
     const searchParams = req.nextUrl.searchParams;
     const technician = searchParams.get('technician');
     const status = searchParams.get('status');
+    const region = searchParams.get('region');
 
     let filter: any = {};
     if (technician) filter.technician = technician;
     if (status) filter.status = status;
+    if (region) filter.region = region;
 
     const machines = await Machine.find(filter).sort({ createdAt: -1 });
     return NextResponse.json(machines);
@@ -28,7 +30,7 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
   try {
     await connectDB();
-    const { sn, client, phone, type, brand, technician } = await req.json();
+    const { sn, client, phone, type, brand, region, technician } = await req.json();
 
     if (!sn || !client || !technician) {
       return NextResponse.json(
@@ -43,6 +45,7 @@ export async function POST(req: NextRequest) {
       phone,
       type,
       brand,
+      region,
       technician
     });
 
