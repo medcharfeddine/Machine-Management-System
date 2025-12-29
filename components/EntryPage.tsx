@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const machineTypes = ['imprimante', 'pc fix', 'pc portable', 'photocopie', 'videoprojecteur', 'onduleur', 'machine a calculer'];
-const brands = ['HP', 'Dell', 'Lenovo', 'Canon', 'Xerox', 'Epson', 'Brother', 'Samsung', 'LG', 'Acer', 'ASUS', 'Sony', 'Panasonic', 'Other'];
+const brands = ['HP','OKI', 'Dell', 'Lenovo', 'Canon', 'Xerox', 'Epson', 'Brother', 'Samsung', 'LG', 'Acer', 'ASUS', 'Sony', 'Panasonic', 'Other'];
 const tunisianStates = [
   'Ariana', 'Béja', 'Ben Arous', 'Bizerte', 'Gabès', 'Gafsa', 'Jendouba', 
   'Kairouan', 'Kasserine', 'Kebili', 'Kef', 'Mahdia', 'Manouba', 'Médenine', 
